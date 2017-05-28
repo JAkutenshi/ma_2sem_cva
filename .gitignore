@@ -1,2 +1,13 @@
-X64
-.vs
+# Visual Studio directories
+**/X64/
+**/Debug/
+**/.vs/
+
+# Visual Studio files
+*.vcxproj.filters
+*.vcxproj.user
+
+# LaTeX tmp files
+*.aux
+*.log
+*.synctex.gz
