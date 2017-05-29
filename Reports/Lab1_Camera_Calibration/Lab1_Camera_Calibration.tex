@@ -1,0 +1,106 @@
+% Шаблон для отчетов пол лабораторным работам в СПбГЭТУ "ЛЭТИ"
+% Ефремов М.А. 2017г
+%=== Тип документа - статья, кегль 14пт.
+\documentclass[14pt]{article}
+%=== Настройка кодировок, шрифта и языка
+\usepackage[utf8]{inputenc}
+\usepackage{extsizes}
+\usepackage[main=russian, english]{babel}
+\usepackage[T2A, T1]{fontenc}
+%=== Разметка документа
+\usepackage{geometry} 
+\geometry{
+	a4paper, 
+	top = 2cm,
+	bottom = 2cm,
+	left = 3cm,
+	right = 1cm
+}
+%=== Форматирование текста
+\usepackage {setspace}			% Интерлиньяж
+\onehalfspacing					% 1.5 строки
+\usepackage {indentfirst} 		% Красная строка с первого предложения
+\setlength						% Отступ красной строки - 1.25см
+	{\parindent}
+	{1.25cm}	
+\usepackage {titlesec}			% Форматирование заголовков
+% разделов
+\titleformat
+	{\section}
+	[hang]
+	{\normalsize\bfseries}
+	{}{0pt}{}
+\titlespacing
+	{\section}
+	{\parindent}
+	{4ex}
+	{0pt}
+% подразделов (нумеруются)
+\titleformat
+	{\subsection}
+	[hang]
+	{\normalsize\bfseries\itshape}
+	{\arabic{subsection}. }{0pt}{}
+\titlespacing
+	{\subsection}
+	{\parindent}
+	{4ex}
+	{0pt}
+%=== Минимизируем количество переносов
+\usepackage {ragged2e}
+\usepackage {microtype}
+\tolerance = 500
+\hyphenpenalty = 20000
+\emergencystretch = 1cm
+%=== Таблицы
+\usepackage {tabularx}	% основной тип таблиц, выравнивание по ширине
+\usepackage {longtable}	% для таблиц, не вмещающихся на одну страницу
+\usepackage {multirow}	% для разбиения ячеек на несколько строк
+\usepackage {multicol}	% на несколько колонок
+%=== ^ до этого места - минимальная преамбула документа.
+%=== Далее идут опциональные, но часто использущиеся пакеты,
+%=== а так же написанные мной команды, чем-то упрощающие написание отчетов
+
+%=== Работа с формулами
+% Набор пакетов, сильно расширяющих возможности по набору формул
+\usepackage{amsmath}
+% добавляет специфические для русских  статей мат. символы вроде \leqslant
+\usepackage{amssymb}
+% добавляет окружения для теорем и лемм	
+\usepackage{amsthm}				
+\usepackage{mathtools}
+% номера только для тех формул, на которые есть ссылки в тексте
+\mathtoolsset{showonlyrefs=true}
+
+%=== Работа с изображениями
+\usepackage{graphicx}
+
+%=== Работа с гиперссылками
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	urlcolor=blue,
+	filecolor=green,
+	linkcolor=red
+}
+
+% Компиляция под Windows 10 при помощи XeLaTeX для использования шрифта Times New Roman
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+
+\begin{document}
+	\include{tex/title}
+	
+	\section{Цель работы.}
+		При помощи библиотеки OpenCV и примеров ее использования, получить внутренние параметры камеры, а так же коэффициенты дисторсии, на основании набора предложенных фотографий с изображением шахматной доски.
+	
+	\section*{Основные теоретические положения.}
+		\input{tex/theory}
+	
+	\section*{Экспериментальные результаты.}
+		\input{tex/result}
+	
+	\section*{Выводы.}
+		Полученные значения внутренних параметров очень близки к исходным, как и коэффициенты радиальной дисторсии. Достаточно большое различие во втором коэффициенте тангенциальной дисторсии. Различия можно объяснить во-первых качеством снимков, во-вторых - количеством. Оба параметра при изменении в большую сторону положительно скажутся на точности. 
+	
+\end{document}

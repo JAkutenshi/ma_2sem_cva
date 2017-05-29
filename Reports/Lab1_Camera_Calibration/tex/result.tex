@@ -1,0 +1,22 @@
+За основу был взят пример на OpenCV, вычисляющие и выдающий в формате xml требующиеся параметры камеры. Программа принимает на вход xml файл с настройками. Для упрощения работы файлу было дано имя default.xml, которое не надо указывать для запуска программы. В нем были указаны входные данные: размер шахматной доски 14 в ширину и 10 в высоту, количество снимков - 15, путь до xml файла, описывающий местонахождение снимков.
+
+Исходный код идентичен примеру 3calibration.cpp, собранный проект доступен в репозитории: \url{https://github.com/JAkutenshi/ma_2sem_cva/tree/master/Camera_Calibration}. В этом репозитории, в файле \textit{out\_camera\_data.xml } хранится результат программы.
+
+Полученные результаты представлены в выражениях \eqref{eq:k_result} и \eqref{eq:c_distorce_result}.
+
+\begin{equation}\label{eq:k_result}
+K_{ideal} = 
+\begin{pmatrix}
+1189.273 & 0 		& 384 \\
+0		 & 1189.273 & 290 \\ 
+0		 & 0		& 1 
+\end{pmatrix}
+\end{equation}
+\begin{equation}\label{eq:c_distorce_result}
+C_{distorceIdeal} = 
+\left[
+\begin{array}{ccccc}
+-0.346 & 1.698 & 0 & 0 & -5.537
+\end{array}
+\right]
+\end{equation}

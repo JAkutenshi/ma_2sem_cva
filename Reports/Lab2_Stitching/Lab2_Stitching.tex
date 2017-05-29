@@ -1,0 +1,122 @@
+% Шаблон для отчетов пол лабораторным работам в СПбГЭТУ "ЛЭТИ"
+% Ефремов М.А. 2017г
+%=== Тип документа - статья, кегль 14пт.
+\documentclass[14pt]{article}
+%=== Настройка кодировок, шрифта и языка
+\usepackage[utf8]{inputenc}
+\usepackage{extsizes}
+\usepackage[main=russian, english]{babel}
+\usepackage[T2A, T1]{fontenc}
+%=== Разметка документа
+\usepackage{geometry} 
+\geometry{
+	a4paper, 
+	top = 2cm,
+	bottom = 2cm,
+	left = 3cm,
+	right = 1cm
+}
+%=== Форматирование текста
+\usepackage {setspace}			% Интерлиньяж
+\onehalfspacing					% 1.5 строки
+\usepackage {indentfirst} 		% Красная строка с первого предложения
+\setlength						% Отступ красной строки - 1.25см
+	{\parindent}
+	{1.25cm}	
+\usepackage {titlesec}			% Форматирование заголовков
+% разделов
+\titleformat
+	{\section}
+	[hang]
+	{\normalsize\bfseries}
+	{}{0pt}{}
+\titlespacing
+	{\section}
+	{\parindent}
+	{4ex}
+	{0pt}
+% подразделов (нумеруются)
+\titleformat
+	{\subsection}
+	[hang]
+	{\normalsize\bfseries\itshape}
+	{\arabic{subsection}. }{0pt}{}
+\titlespacing
+	{\subsection}
+	{\parindent}
+	{4ex}
+	{0pt}
+%=== Минимизируем количество переносов
+\usepackage {ragged2e}
+\usepackage {microtype}
+\tolerance = 500
+\hyphenpenalty = 20000
+\emergencystretch = 1cm
+%=== Таблицы
+\usepackage {tabularx}	% основной тип таблиц, выравнивание по ширине
+\usepackage {longtable}	% для таблиц, не вмещающихся на одну страницу
+\usepackage {multirow}	% для разбиения ячеек на несколько строк
+\usepackage {multicol}	% на несколько колонок
+%=== ^ до этого места - минимальная преамбула документа.
+%=== Далее идут опциональные, но часто использущиеся пакеты,
+%=== а так же написанные мной команды, чем-то упрощающие написание отчетов
+
+%=== Работа с формулами
+% Набор пакетов, сильно расширяющих возможности по набору формул
+\usepackage{amsmath}
+% добавляет специфические для русских  статей мат. символы вроде \leqslant
+\usepackage{amssymb}
+% добавляет окружения для теорем и лемм	
+\usepackage{amsthm}				
+\usepackage{mathtools}
+% номера только для тех формул, на которые есть ссылки в тексте
+\mathtoolsset{showonlyrefs=true}
+
+%=== Работа с изображениями
+\usepackage{graphicx}
+
+%=== Работа с гиперссылками
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	urlcolor=blue,
+	filecolor=green,
+	linkcolor=red
+}
+
+%=== Вставка кода
+\usepackage{listings}
+\usepackage{xcolor}
+\lstset { %
+	basicstyle = \footnotesize,% basic font setting
+	captionpos = b,
+	numbers    = left,
+	frame      = single
+}
+
+% Компиляция под Windows 10 при помощи XeLaTeX для использования шрифта Times New Roman
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+
+\begin{document}
+	\include{tex/title}
+	
+	\section{Цель работы.}
+		При помощи библиотеки OpenCV, используя предложенные изображения в качестве входных данных, получить панорамное изображение.
+	
+	\section{Основные теоретические положения.}
+		\input{tex/theory}
+	
+	\section{Программа}
+		\input{tex/program}
+		
+	\section{Экспериментальные результаты.}
+		\input{tex/result}
+
+	\section{Выводы.}
+		На полученном изображении дублируется тумбочка, хотя шкаф оказался очень четким, как и календарь на стене. Во время выполнения работы, когда строилась панорама по четырем изображениям, использовался очень большой объем памяти (875 Мб по данным профайлера), в то время, как по двум не больше 400 Мб. Это объясняется тем, что из четырех фотографий по две были практически одинаковые и во время выполнения конвейера обнаруживалось множество совпадений, которые требовалось хранить в памяти. 
+		
+		Кроме того, сильно была заметна разница во времени выполнения конвейера. 
+		
+		Стоит отметить, что по неизвестной причине, исходные изображения не всегда хранятся так, как отображаются, например, просмотрщиком изображений. Так, исходные фотографии, при создании этого отчета, компонуясь системой \LaTeX , были повернуты на $90^{\circ}$ против часовой стрелки. В ходе тестирования исполняющего модуля на других машинах в 3 из 5 случаев панораму получить не удалось, скорее-всего из-за подобного странного хранения самих файлов фотографий.
+\end{document}
